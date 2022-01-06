@@ -1,0 +1,65 @@
+Curl Commands for interacting with the Server:
+
+1. (GET)
+    1.1 Getting the entire list:
+        curl -i -H "Content-Type: application/json" -X GET localhost:8080/listAll
+
+    1.2 Getting list of expired items:
+        curl -i -H "Content-Type: application/json" -X GET localhost:8080/listExpired
+
+    1.3 Getting list of non-expired items:
+        curl -i -H "Content-Type: application/json" -X GET localhost:8080/listNonExpired
+
+    1.4 Getting list of items expiring in 7 days:
+        curl -i -H "Content-Type: application/json" -X GET localhost:8080/listExpiringIn7Days
+
+    1.5 Pinging the server:
+        - returns: "System is Up!"
+        curl -i -H "Content-Type: application/json" -X GET localhost:8080/ping
+
+    1.6 Making an exit request:
+        - causes the current items in working memory to be saved to file
+        - you might notice that "type" will change from "ca.cmpt213.a4.client.model.Drink" to "Drink" if you look directly in the itemList.json when serializing to file
+            - this occurs since we have 2 different filepath versions of Food and Drink (the webappserver and the client)
+            - there is code that handles converting the types of webappserver filepath version to the client filepath version on file deserialization (which occurs only when you stop and startup the server again)
+         - tldr: don't worry about it, it works ;)
+
+        curl -i -H "Content-Type: application/json" -X GET localhost:8080/exit
+
+2. (POST)
+    - For adding an item via curl, the format of the JSON object has to be in the following format (don't forget to escape the quotation marks when entering to curl):
+        - in particular, the provided file path for Food and Drink are absolute, and you shouldn't change them
+
+      Food item:
+      {
+        "weight": 420,
+        "name": "Special Sushi",
+        "notes": "is very yummy and expires in a suspiciously long time...",
+        "price": 69.69,
+        "expiryDate": "2069-04-20T23:59",
+        "type": "ca.cmpt213.a4.client.model.Food"
+      }
+
+      Drink item:
+      {
+        "volume": 700.0,
+        "itemId": "0392792e-239e-4950-9338-48afa4fc089c",
+        "name": "Milk Tea with Pearls",
+        "notes": "Milk Tea is the best",
+        "price": 5.99,
+        "expiryDate": "2021-11-10T23:59",
+        "type": "ca.cmpt213.a4.client.model.Drink"
+      }
+
+    2.1 Adding a new Food item:
+        curl -i -H "Content-Type: application/json" -X POST -d "{\"name\":\"Special Sushi\",\"notes\":\"is very yummy and expires in a long time\",\"price\":10.69,\"weight\":420,\"expiryDate\":\"2069-04-20T23:59:00\",\"type\":\"ca.cmpt213.a4.client.model.Food\"}" localhost:8080/addItem/Food
+
+    2.2 Adding a new Drink item:
+        curl -i -H "Content-Type: application/json" -X POST -d "{\"name\":\"Milk Tea with Pearls\",\"notes\":\"Milk Tea is the best\",\"price\":5.99,\"volume\":700,\"expiryDate\":\"2021-11-10T23:59:00\",\"type\":\"ca.cmpt213.a4.client.model.Drink\"}" localhost:8080/addItem/Drink
+
+    2.3 Removing an item:
+        - Disclaimer: object IDs are handled using UUIDs, meaning to delete an object via curl, you will need to first add an item, then copy the UUID corresponding to the object that is generated subsequently when a JSON Array is returned to the command prompt
+        - replace the "{uuid}" in the below curl command with the UUID you copied (corresponding to "itemId")
+        - make sure it only includes letters, numbers, and dashes, no quotation marks as it's not a String, but a UUID
+
+        curl -i -H "Content-Type: application/json" -X POST localhost:8080/removeItem/{uuid}

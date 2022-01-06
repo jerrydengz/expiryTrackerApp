@@ -1,0 +1,79 @@
+Operation 1: List All Consumable Items
+======================================
+1. Click the "All" button the very top to display all the Consumable items stored.
+   This will colour the button selected and un-colour a button that was previously selected (if was previously selected).
+   1.(a) on initial opening of the program, the "All" button is selected by default.
+   1.(b) Clicking the button again when already selected will do nothing.
+2. If there are no items to display, a message will be displayed saying that there are no items to show
+
+2. On the right is a scroll bar that you can drag to view more items if there are items that are not on the screen.
+   2.(a) If there are no items present or not enough items to overfill the screen panel, the scroll bar will be disabled.
+   2.(b) Depending on the size of your window, adding more items (see Operation 2) will fill up the screen and when
+         there are enough items, the scroll bar will appear letting you drag and view the items that are out of the screen panel.
+
+Operation 2: Add a New Consumable Item
+======================================
+1. Clicking the "Add" Button on the bottom of the window in the main window pops open a dialog window.
+   1.(a) This dialog window can't be resized.
+
+2. There are several text fields for you to enter information corresponding to the label. Click on the field to enter text.
+    2.(a) There is also a dropdown at the very top to switch between the type of Consumable.
+          Click on the dropdown bar or the upside down button on the right of the dropdown will display a list of options to select.
+          Click on one of them to select.
+    2.(b) Switching the type of Consumable will update the "Weight" label corresponding to the type of Consumable selected.
+
+3. At the bottom there is a field for "Expiry Date" and 2 buttons.
+    3.(a) The "Expiry Date" field is disabled for keyboard entry by default, so you will have to click the button with the "..." to enter a date.
+          Clicking that will pop up a calendar for you to choose a date.
+          - In the calendar you can click on the dates (the numbers) to pick a expiry date.
+          - Clicking the month will bring up a list of months to pick from
+          - Clicking the year will bring up a list of years to pick from. At the bottom is "(...)"
+                - clicking on that will let you set a custom year
+                - click on the check mark to save it
+          - Clicking on the ">" or "<" will go up or down 1 month on the calendar
+          - Clicking on the ">>" or "<<" will go up or down 1 year on the calendar
+          - Clicking on "Today:" + today's date will select today's date as an entry
+          - Anytime you select a date, you can go back and click "Clear" to clear the date
+
+    3.(b) Clicking "Create" will take the info in the text fields and will validate them before creating and exiting the window.
+          If any of the fields are empty or invalid, another error dialog will show up with the corresponding message.
+          Click "x" or "OK" to close that dialog.
+    3.(c) Click "Cancel" will close the window without saving any of the information you entered. Clicking "x" on the top
+          right will also do the same.
+
+4. The window to add a new item must be closed first before interacting with the main window of the program.
+   4.(a) you won't be able to click on the main window, the current window will flash indicating that it's locked on the current window,
+         and you have to close the window (via "Cancel", "Create", or "X")
+
+Operation 3: Delete an Item
+===========================
+1. On any view, clicking the "Delete" button on an existing item will remove that item and update the screen.
+   1.(a) the deleted item will also disappear from other views.
+   1.(b) deleting all items will display a message that there are no items to show.
+
+Operation 4: List Expired Items
+================================
+1. Clicking the "Expired" button at the top will display all the Consumable items that are expired.
+   This will colour the button selected and un-colour a button that was previously selected (if was previously selected).
+   1.(a) Clicking the button again when already selected will do nothing.
+   1.(b) If there are no items to display, a message will be displayed saying that there are no items to show.
+
+Operation 5: List Non-Expired Items
+====================================
+1. Clicking the "Not Expired" button at the top will display all the Consumable items that are not expired.
+   This will colour the button selected and un-colour a button that was previously selected (if was previously selected).
+   1.(a) Clicking the button again when already selected will do nothing.
+   1.(b) If there are no items to display, a message will be displayed saying that there are no items to show.
+
+Operation 6: List Items Expiring in 7 Days
+==========================================
+1. Clicking the "Expiring in 7 Days" button at the top will display all the Consumable items that are expiring in 7 days.
+   This will colour the button selected and un-colour a button that was previously selected (if was previously selected).
+   1.(a) Clicking the button again when already selected will do nothing.
+   1.(b) If there are no items to display, a message will be displayed saying that there are no items to show.
+
+Operation 7: Exit
+=================
+1. Click the "x" button in the top right corner to close the program.
+   1.(a) hovering over the "x" button will colour red and a text will display "Close".
+2. When exiting, the program will make an exit request to the server and save all the created Consumable items into a file on the server
